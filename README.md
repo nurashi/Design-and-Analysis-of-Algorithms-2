@@ -138,12 +138,26 @@ Sample benchmark results (1,000 elements):
 
 Following the assignment's GitHub workflow requirements:
 
-- `main` — working releases only (tagged v1.0)
+- `main` — working releases only (tagged v0.1, v1.0, v1.1)
 - `feature/metrics` — performance tracking implementation
 - `feature/algorithm` — core Boyer-Moore algorithm
 - `feature/testing` — comprehensive test suite
 - `feature/cli` — benchmark runner and CLI
 - `feature/optimization` — performance improvements
+
+### Commit Storyline ✅
+```
+fee233d perf(benchmark): JMH harness for accurate measurements
+b4d9ddc release: v1.0 with complete implementation  
+6a390f6 fix(edge-cases): handle empty and single-element arrays
+133cbac docs(readme): usage instructions and complexity analysis
+fa8b5e8 feat(optimization): probabilistic early validation for large arrays
+9baadbe feat(cli): benchmark runner with configurable input sizes
+93d1e0b test(algorithm): comprehensive test suite with edge cases
+fd33d1a feat(algorithm): baseline Boyer-Moore Majority Vote implementation
+cd54414 feat(metrics): performance counters and CSV export (v0.1)
+36eff98 init: maven project structure, junit5, ci setup
+```
 
 ## Assignment Deliverables
 
