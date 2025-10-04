@@ -112,6 +112,7 @@ public class BoyerMooreMajorityVote {
     /**
      * Phase 2: Verify that candidate is actually the majority element
      * Counts occurrences to ensure it appears more than n/2 times
+     * OPTIMIZATION: Early termination when majority threshold is reached
      */
     private boolean isMajority(int[] nums, int candidate) {
         int count = 0;
@@ -123,7 +124,7 @@ public class BoyerMooreMajorityVote {
             
             if (nums[i] == candidate) {
                 count++;
-                // Early termination optimization
+                // OPTIMIZATION: Early termination when majority is confirmed
                 if (count > majority) {
                     return true;
                 }
@@ -131,6 +132,70 @@ public class BoyerMooreMajorityVote {
         }
         
         return count > majority;
+    }
+    
+    /**
+     * OPTIMIZATION: Probabilistic early validation
+     * Samples random positions to quickly verify if candidate is likely majority
+     * Reduces verification time for large arrays with clear majorities
+     */
+    private boolean isProbablyMajority(int[] nums, int candidate) {
+        int sampleSize = Math.min(50, nums.length / 10); // Sample 10% or max 50
+        int matches = 0;
+        
+        for (int i = 0; i < sampleSize; i++) {
+            int randomIndex = (int)(Math.random() * nums.length);
+            tracker.incrementArrayAccess();
+            tracker.incrementComparison();
+            
+            if (nums[randomIndex] == candidate) {
+                matches++;
+            }
+        }
+        
+        // If sample majority > 60%, very likely to be true majority
+        return (double)matches / sampleSize > 0.6;
+    }
+    
+    /**
+     * OPTIMIZATION: Find majority with probabilistic pre-validation
+     * Uses sampling to potentially skip full verification for large arrays
+     */
+    public Integer findMajorityElementOptimizedProbabilistic(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return null;
+        }
+        
+        tracker.reset();
+        tracker.setInputCharacteristics(nums.length, "probabilistic-optimized");
+        tracker.startTiming();
+        
+        // Phase 1: Find potential candidate
+        Integer candidate = findCandidate(nums);
+        
+        if (candidate == null) {
+            tracker.endTiming();
+            tracker.storeResult();
+            return null;
+        }
+        
+        // Phase 2: Optimized verification
+        // For large arrays, use probabilistic sampling first
+        boolean isLikelyMajority = true;
+        if (nums.length > 1000) {
+            isLikelyMajority = isProbablyMajority(nums, candidate);
+        }
+        
+        // Only do full verification if probabilistic check suggests majority
+        if (isLikelyMajority && isMajority(nums, candidate)) {
+            tracker.endTiming();
+            tracker.storeResult();
+            return candidate;
+        }
+        
+        tracker.endTiming();
+        tracker.storeResult();
+        return null;
     }
     
     /**

@@ -1,0 +1,23 @@
+# Maven build artifacts
+target/
+*.class
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# CSV benchmark results (keep as examples but ignore future runs)
+!benchmark_size_*.csv
+
+# Temporary files
+*.tmp
+*.swp
+*~
