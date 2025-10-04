@@ -1,4 +1,4 @@
-# 📊 Performance Results Summary
+# Performance Results Summary
 
 This document contains performance analysis results for the Boyer-Moore Majority Vote algorithm implementation.
 
@@ -11,7 +11,7 @@ Based on our comprehensive benchmarks:
 - **Best Case**: ~2-3 array accesses when majority element is first element
 - **Worst Case**: Exactly 2n array accesses (n for candidate finding + n for verification)
 
-## 📈 Benchmark Results
+## Benchmark Results
 
 ### Execution Time by Array Size
 | Array Size | Best Time (ms) | Average Time (ms) | Worst Time (ms) |
@@ -30,7 +30,7 @@ Based on our comprehensive benchmarks:
 | Single Element    | 2                      | Optimal    |
 | Random            | ~2.0M                  | Expected   |
 
-## 🎯 Algorithm Variants Performance
+## Algorithm Variants Performance
 
 ### Standard Boyer-Moore
 - **Use Case**: General purpose, balanced performance
@@ -47,14 +47,14 @@ Based on our comprehensive benchmarks:
 - **Performance**: 100-1000x slower on large inputs
 - **Memory**: Same O(1) space complexity
 
-## 💡 Usage Recommendations
+## Usage Recommendations
 
 1. **For Production Code**: Use `BoyerMooreMajorityVote.findMajorityElement()`
 2. **For Learning**: Compare all three implementations
 3. **For Research**: Use `PerformanceTracker` to collect detailed metrics
 4. **For Benchmarking**: Use `BenchmarkRunner` with JMH integration
 
-## 🔧 Integration Examples
+## Integration Examples
 
 ### Simple Usage
 ```java
@@ -78,7 +78,7 @@ for (int[] dataset : datasets) {
 algorithm.exportPerformanceResults("batch_results.csv");
 ```
 
-## 📋 Test Coverage
+## Test Coverage
 
 - **Unit Tests**: 23 test cases covering all edge cases
 - **Integration Tests**: 2 comprehensive scenarios
@@ -86,7 +86,7 @@ algorithm.exportPerformanceResults("batch_results.csv");
 - **Performance Tests**: JMH microbenchmarks
 - **Edge Cases**: Empty arrays, single elements, no majority
 
-## 🚀 Next Steps
+## Next Steps
 
 1. Review the code structure and implementation
 2. Run your own benchmarks with your specific data patterns
@@ -94,5 +94,3 @@ algorithm.exportPerformanceResults("batch_results.csv");
 4. Contribute improvements via GitHub pull requests
 
 ---
-*Generated from Assignment 2: Algorithmic Analysis and Peer Code Review*
-*Repository: https://github.com/nurashi/Design-and-Analysis-of-Algorithms-2*
