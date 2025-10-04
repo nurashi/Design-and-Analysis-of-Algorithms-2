@@ -45,6 +45,9 @@ assignment2-boyer-moore-majority/
 1. **Early Termination**: Stop verification once majority threshold reached
 2. **Memory Efficiency**: Reuse variables, minimize allocations
 3. **Cache Optimization**: Sequential memory access patterns
+<img width="993" height="851" alt="image" src="https://github.com/user-attachments/assets/2aa94833-bf52-4c1d-a420-1bf125771701" />
+<img width="633" height="413" alt="image" src="https://github.com/user-attachments/assets/acf84aee-bec6-4d93-8866-b5d723948643" />
+
 
 ## Usage
 
@@ -100,12 +103,16 @@ System.out.println(tracker.getPerformanceSummary());
 - [x] Property-based testing with random inputs
 - [x] Integration tests for algorithm variants
 - [x] Performance validation and complexity verification
+- [ ] <img width="1782" height="755" alt="image" src="https://github.com/user-attachments/assets/f1250558-78bc-4c12-bcf1-df0c074039ae" />
+
 
 ### CLI & Benchmarking 
 - [x] Command-line benchmark runner
 - [x] Multiple input types (random, sorted, nearly-sorted, etc.)
 - [x] Configurable input sizes (100 to 100,000 elements)
-- [x] Performance comparison with naive O(n²) approach
+- [x] Performance comparison with naive O(n²) 
+<img width="977" height="1145" alt="image" src="https://github.com/user-attachments/assets/83e02fdc-476b-45ab-bb9a-e01da124da3b" />
+
 
 ### Git Workflow 
 - [x] Feature branch strategy implemented
@@ -124,6 +131,8 @@ Sample benchmark results (1,000 elements):
   nearly-sorted  :    0.123 ms |    1,987 accesses |  1,986 comparisons | Result: 1
   majority-heavy :    0.106 ms |    1,618 accesses |  1,616 comparisons | Result: 42
 ```
+<img width="1138" height="281" alt="image" src="https://github.com/user-attachments/assets/3a0d35fc-40df-4d11-8385-798c69a95707" />
+
 
 ## Algorithm Comparison
 
