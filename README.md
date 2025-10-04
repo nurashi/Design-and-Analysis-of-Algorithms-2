@@ -31,15 +31,30 @@ assignment2-boyer-moore-majority/
 
 ## Usage
 ```bash
-# Compile
+# Compile the project
 mvn compile
 
-# Run tests
+# Run comprehensive tests
 mvn test
 
-# Run benchmark
-java -cp target/classes cli.BenchmarkRunner [array_size]
+# Run basic benchmark
+java -cp target/classes cli.BenchmarkRunner
+
+# Run benchmark for specific size
+java -cp target/classes cli.BenchmarkRunner 50000
+
+# Compile and run with Maven
+mvn compile exec:java -Dexec.mainClass="cli.BenchmarkRunner"
 ```
+
+## Features Implemented
+- ✅ Boyer-Moore Majority Vote core algorithm
+- ✅ Performance tracking and metrics collection  
+- ✅ Comprehensive unit tests (edge cases, property-based testing)
+- ✅ CLI benchmark runner with multiple input distributions
+- ✅ Optimizations: early termination, probabilistic validation
+- ✅ CSV export for performance analysis
+- ✅ Clean Git workflow with feature branches
 
 ## Branch Strategy
 - `main` — working releases only
