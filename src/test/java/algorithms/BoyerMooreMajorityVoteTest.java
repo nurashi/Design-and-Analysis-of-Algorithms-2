@@ -9,10 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 import java.util.Arrays;
 
-/**
- * Comprehensive unit tests for Boyer-Moore Majority Vote algorithm
- * Covers edge cases, correctness verification, and performance validation
- */
 public class BoyerMooreMajorityVoteTest {
     
     private BoyerMooreMajorityVote algorithm;
@@ -103,7 +99,7 @@ public class BoyerMooreMajorityVoteTest {
         @Test
         @DisplayName("Almost majority (exactly n/2 occurrences)")
         void testAlmostMajority() {
-            int[] nums = {1, 1, 2, 2}; // Each appears 2 times, need > 2 for majority
+            int[] nums = {1, 1, 2, 2}; 
             assertNull(algorithm.findMajorityElement(nums));
         }
     }
@@ -115,16 +111,14 @@ public class BoyerMooreMajorityVoteTest {
         @Test
         @DisplayName("Large array with majority")
         void testLargeArrayWithMajority() {
-            int[] nums = new int[1001]; // 1001 elements
-            // Fill first 501 with different values
+            int[] nums = new int[1001];
             for (int i = 0; i < 501; i++) {
                 nums[i] = i;
             }
-            // Fill remaining 500 with same value (total 501 occurrences)
             for (int i = 501; i < 1001; i++) {
                 nums[i] = 999;
             }
-            nums[0] = 999; // Now 999 appears 501 times > 500.5
+            nums[0] = 999; 
             
             assertEquals(Integer.valueOf(999), algorithm.findMajorityElement(nums));
         }
@@ -158,7 +152,7 @@ public class BoyerMooreMajorityVoteTest {
         @Test
         @DisplayName("Optimized version (assumes majority exists)")
         void testOptimizedVersion() {
-            int[] nums = {1, 2, 1, 3, 1, 4, 1}; // 1 is majority
+            int[] nums = {1, 2, 1, 3, 1, 4, 1};
             assertEquals(Integer.valueOf(1), algorithm.findMajorityElementOptimized(nums));
         }
         
@@ -203,7 +197,6 @@ public class BoyerMooreMajorityVoteTest {
         @Test
         @DisplayName("Linear time complexity validation")
         void testLinearTimeComplexity() {
-            // Test with different input sizes to verify O(n) behavior
             int[] sizes = {100, 200, 400};
             long[] times = new long[sizes.length];
             
@@ -217,8 +210,6 @@ public class BoyerMooreMajorityVoteTest {
                 times[i] = endTime - startTime;
             }
             
-            // Verify roughly linear scaling (allow for variance)
-            // Time for 400 should be less than 5x time for 100
             assertTrue(times[2] < times[0] * 5, 
                 "Time complexity appears to be worse than linear");
         }
@@ -226,13 +217,10 @@ public class BoyerMooreMajorityVoteTest {
         @Test
         @DisplayName("Constant space complexity")
         void testConstantSpace() {
-            // The algorithm should use O(1) space regardless of input size
-            // We verify this by ensuring no additional data structures scale with input
             
             int[] small = createMajorityArray(100);
             int[] large = createMajorityArray(10000);
             
-            // Both should complete successfully without memory issues
             assertNotNull(algorithm.findMajorityElement(small));
             assertNotNull(algorithm.findMajorityElement(large));
         }
@@ -245,18 +233,16 @@ public class BoyerMooreMajorityVoteTest {
         @Test
         @DisplayName("Random input correctness verification")
         void testRandomInputs() {
-            Random random = new Random(42); // Fixed seed for reproducibility
+            Random random = new Random(42);
             
             for (int test = 0; test < 100; test++) {
-                int size = 10 + random.nextInt(90); // Size 10-99
+                int size = 10 + random.nextInt(90); 
                 int[] nums = new int[size];
                 
-                // Fill with random values
                 for (int i = 0; i < size; i++) {
-                    nums[i] = random.nextInt(10); // Values 0-9
+                    nums[i] = random.nextInt(10);
                 }
                 
-                // Compare Boyer-Moore with naive implementation
                 Integer boyerMooreResult = algorithm.findMajorityElement(nums);
                 Integer naiveResult = algorithm.findMajorityElementNaive(nums);
                 
@@ -271,7 +257,7 @@ public class BoyerMooreMajorityVoteTest {
             Random random = new Random(123);
             
             for (int test = 0; test < 50; test++) {
-                int size = 10 + random.nextInt(40); // Size 10-49
+                int size = 10 + random.nextInt(40);
                 int majorityValue = random.nextInt(100);
                 int[] nums = createArrayWithGuaranteedMajority(size, majorityValue);
                 
@@ -281,37 +267,26 @@ public class BoyerMooreMajorityVoteTest {
         }
     }
     
-    // Utility methods for test data generation
-    
-    /**
-     * Create array where first element appears more than n/2 times
-     */
     private int[] createMajorityArray(int size) {
         int[] nums = new int[size];
         int majorityCount = size / 2 + 1;
         
-        // Fill with majority element
         for (int i = 0; i < majorityCount; i++) {
             nums[i] = 1;
         }
         
-        // Fill rest with different values
         for (int i = majorityCount; i < size; i++) {
-            nums[i] = i; // Different values
+            nums[i] = i; 
         }
         
         return nums;
     }
     
-    /**
-     * Create array with guaranteed majority element
-     */
     private int[] createArrayWithGuaranteedMajority(int size, int majorityValue) {
         int[] nums = new int[size];
         int majorityCount = size / 2 + 1;
         Random random = new Random();
         
-        // Place majority elements randomly
         boolean[] placed = new boolean[size];
         for (int i = 0; i < majorityCount; i++) {
             int pos;
@@ -323,7 +298,6 @@ public class BoyerMooreMajorityVoteTest {
             placed[pos] = true;
         }
         
-        // Fill remaining positions with non-majority values
         for (int i = 0; i < size; i++) {
             if (!placed[i]) {
                 do {

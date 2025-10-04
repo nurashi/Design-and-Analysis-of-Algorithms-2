@@ -6,10 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Performance tracking utility for Boyer-Moore Majority Vote algorithm
- * Tracks key operations and exports results to CSV for analysis
- */
 public class PerformanceTracker {
     private long arrayAccesses;
     private long comparisons;
@@ -20,7 +16,6 @@ public class PerformanceTracker {
     private int inputSize;
     private String inputType;
     
-    // Store results for multiple runs
     private static List<PerformanceResult> results = new ArrayList<>();
     
     public PerformanceTracker(String algorithmName) {
@@ -28,9 +23,6 @@ public class PerformanceTracker {
         reset();
     }
     
-    /**
-     * Reset all counters for a new measurement
-     */
     public void reset() {
         arrayAccesses = 0;
         comparisons = 0;
@@ -39,66 +31,39 @@ public class PerformanceTracker {
         endTime = 0;
     }
     
-    /**
-     * Start timing measurement
-     */
     public void startTiming() {
         startTime = System.nanoTime();
     }
     
-    /**
-     * End timing measurement
-     */
     public void endTiming() {
         endTime = System.nanoTime();
     }
     
-    /**
-     * Increment array access counter
-     */
     public void incrementArrayAccess() {
         arrayAccesses++;
     }
     
-    /**
-     * Increment comparison counter
-     */
     public void incrementComparison() {
         comparisons++;
     }
     
-    /**
-     * Increment memory allocation counter
-     */
     public void incrementMemoryAllocation() {
         memoryAllocations++;
     }
     
-    /**
-     * Set input characteristics for current run
-     */
     public void setInputCharacteristics(int size, String type) {
         this.inputSize = size;
         this.inputType = type;
     }
     
-    /**
-     * Get execution time in nanoseconds
-     */
     public long getExecutionTimeNs() {
         return endTime - startTime;
     }
     
-    /**
-     * Get execution time in milliseconds
-     */
     public double getExecutionTimeMs() {
         return (endTime - startTime) / 1_000_000.0;
     }
     
-    /**
-     * Store current measurement as a result
-     */
     public void storeResult() {
         results.add(new PerformanceResult(
             algorithmName,
@@ -111,9 +76,6 @@ public class PerformanceTracker {
         ));
     }
     
-    /**
-     * Get current performance summary
-     */
     public String getPerformanceSummary() {
         return String.format(
             "Algorithm: %s\n" +
@@ -130,15 +92,10 @@ public class PerformanceTracker {
         );
     }
     
-    /**
-     * Export all results to CSV file
-     */
     public static void exportToCSV(String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            // CSV header
             writer.write("Algorithm,InputSize,InputType,ArrayAccesses,Comparisons,MemoryAllocations,ExecutionTimeNs\n");
             
-            // CSV data
             for (PerformanceResult result : results) {
                 writer.write(String.format("%s,%d,%s,%d,%d,%d,%d\n",
                     result.algorithmName,
@@ -153,30 +110,20 @@ public class PerformanceTracker {
         }
     }
     
-    /**
-     * Clear all stored results
-     */
     public static void clearResults() {
         results.clear();
     }
     
-    /**
-     * Get all stored results
-     */
     public static List<PerformanceResult> getResults() {
         return new ArrayList<>(results);
     }
     
-    // Getters for individual metrics
     public long getArrayAccesses() { return arrayAccesses; }
     public long getComparisons() { return comparisons; }
     public long getMemoryAllocations() { return memoryAllocations; }
     public int getInputSize() { return inputSize; }
     public String getInputType() { return inputType; }
     
-    /**
-     * Inner class to store performance results
-     */
     public static class PerformanceResult {
         public final String algorithmName;
         public final int inputSize;

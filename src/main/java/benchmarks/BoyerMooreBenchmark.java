@@ -10,10 +10,6 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-/**
- * JMH Benchmarks for Boyer-Moore Majority Vote Algorithm
- * Provides micro-benchmarking with statistical accuracy
- */
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
@@ -32,13 +28,10 @@ public class BoyerMooreBenchmark {
         algorithm = new BoyerMooreMajorityVote();
         Random random = new Random(42);
         
-        // Small array (100 elements)
         smallArray = generateMajorityArray(100, random);
         
-        // Medium array (1000 elements) 
         mediumArray = generateMajorityArray(1000, random);
         
-        // Large array (10000 elements)
         largeArray = generateMajorityArray(10000, random);
     }
     
@@ -46,17 +39,14 @@ public class BoyerMooreBenchmark {
         int[] array = new int[size];
         int majorityCount = size / 2 + 1;
         
-        // Fill with majority element
         for (int i = 0; i < majorityCount; i++) {
             array[i] = 42;
         }
         
-        // Fill rest with random values
         for (int i = majorityCount; i < size; i++) {
             array[i] = random.nextInt(1000);
         }
         
-        // Shuffle array
         for (int i = size - 1; i > 0; i--) {
             int j = random.nextInt(i + 1);
             int temp = array[i];
